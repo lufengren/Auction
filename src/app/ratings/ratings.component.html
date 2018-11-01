@@ -1,0 +1,9 @@
+<span *ngFor="let star of stars">
+  <span *ngIf="star">
+    <i class="fas fa-star fa-sm"></i>
+  </span>
+  <span *ngIf="!star">
+    <i class="far fa-star fa-sm"></i>
+  </span>
+</span>
+{{score}}
