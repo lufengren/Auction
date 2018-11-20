@@ -1,9 +1,9 @@
-<span *ngFor="let star of stars">
-  <span *ngIf="star">
+<span *ngFor="let star of stars; let i=index">
+  <span *ngIf="star" (click)="handleClick(i)">
     <i class="fas fa-star fa-sm"></i>
   </span>
-  <span *ngIf="!star">
-    <i class="far fa-star fa-sm"></i>
+  <span *ngIf=" !star">
+    <i class="far fa-star fa-sm" (click)="handleClick(i)"></i>
   </span>
 </span>
-{{score}}
+{{score | number:'1.0-2'}} star

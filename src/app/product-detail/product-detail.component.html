@@ -1,0 +1,64 @@
+<div class="card mt-2 mb-4">
+  <img class="card-img-top" src="../../assets/slideshow/jew.jpeg" alt="Card image cap">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-9">
+        <h5 class="card-title">{{product.name}}</h5>
+      </div>
+      <div class="col-3 text-right">
+        <h5 class="card-title">${{product.price}}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9">
+        <app-ratings [score]="product.rating"></app-ratings>
+      </div>
+      <div class="col-3 text-right">
+        <p>{{comments.length}}</p>
+      </div>
+    </div>
+    <p class="card-text">{{product.desc}}</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-primary" (click)="showOrHide()">Comment</button>
+    </div>
+    <div class="col-12" [hidden]="isCommentHidden">
+      <app-ratings [readonly]="false" [(score)]="newScore"></app-ratings> <br>
+      <textarea cols="50" rows="2" [(ngModel)]="newComment"></textarea><br>
+      <button (click)="submitNewComment()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- <div>
+  <button class="btn btn-primary" (click)="showOrHide()">Comment</button>
+  <div [hidden]="isCommentHidden">
+    <app-ratings [readonly]="false" [(score)]="newScore"></app-ratings> <br>
+    <textarea cols="50" rows="2" [(ngModel)]="newComment"></textarea><br>
+    <button (click)="submitNewComment()">Submit</button>
+  </div>
+</div> -->
+<br>
+<div *ngFor="let comment of comments">
+  <div class="container mb-2">
+    <div class="row">
+      <div class="col-12">
+        <app-ratings [score]="comment.rating"></app-ratings>
+      </div>
+      <div class="col-8">
+        {{comment.user}}
+      </div>
+      <div class="col-4 text-right">
+        {{comment.time}}
+      </div>
+      <div class="col-12">
+        {{comment.content}}
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
