@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Timestamp } from "rxjs";
+import { getPluralCategory } from "@angular/common/src/i18n/localization";
 
 @Injectable({
   providedIn: "root"
@@ -79,7 +80,12 @@ export class ProductService {
       return comment.productId == productid;
     });
   }
+  getAllCategory(): string[] {
+    return ["Electronic", "Photography"];
+  }
 }
+
+
 
 export class Product {
   constructor(
