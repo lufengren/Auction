@@ -1,91 +1,29 @@
 import { Injectable } from "@angular/core";
-import { Timestamp } from "rxjs";
-import { getPluralCategory } from "@angular/common/src/i18n/localization";
+import { Timestamp, Observable } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: "root"
 })
 export class ProductService {
-  constructor() { }
-  public products: Product[] = [
-    new Product(
-      1,
-      "Canno Camera1",
-      200,
-      "Model 4200",
-      ["Electronic", "Photography"],
-      5
-    ),
-    new Product(
-      2,
-      "Canno Camera2",
-      100,
-      "Model 200",
-      ["Electronic", "Photography"],
-      4
-    ),
-    new Product(
-      3,
-      "Canno Camera3",
-      200,
-      "Model 4200",
-      ["Electronic", "Photography"],
-      3
-    ),
-    new Product(
-      4,
-      "Canno Camera",
-      200,
-      "Model 4200",
-      ["Electronic", "Photography"],
-      5
-    ),
-    new Product(
-      5,
-      "Canno Camera",
-      200,
-      "Model 4200",
-      ["Electronic", "Photography"],
-      5
-    ),
-    new Product(
-      5,
-      "Canno Camera",
-      200,
-      "Model 4200",
-      ["Electronic", "Photography"],
-      4
-    )
-  ];
+  constructor(private http: HttpClient) { }
 
-  public comments: Comment[] = [
-    new Comment("1", 1, "Pretty good", "2018-10-10 11:12", "Jay", 3),
-    new Comment("2", 2, "Pretty good", "2018-09-10 11:12", "Kelly", 5),
-    new Comment("3", 1, "Pretty good", "2018-11-10 11:12", "Jay", 4),
-    new Comment("4", 3, "Pretty good", "2018-10-10 11:12", "Keri", 2)
-  ];
-
-  getProducts(): Product[] {
-    return this.products;
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>("/api/products");
   }
 
-  getProduct(id: number): Product {
-    return this.products.find(product => {
-      return product.id == id;
-    });
+  getProduct(id: number): Observable<Product> {
+    return this.http.get<Product>("/api/products/" + id);
   }
 
-  getComments(productid): Comment[] {
-    return this.comments.filter(comment => {
-      return comment.productId == productid;
-    });
+  getComments(id: number): Observable<Comment[]> {
+    return this.http.get<Comment[]>("/api/products/" + id + "/comments");
   }
   getAllCategory(): string[] {
     return ["Electronic", "Photography"];
   }
 }
-
-
 
 export class Product {
   constructor(

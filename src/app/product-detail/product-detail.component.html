@@ -3,21 +3,21 @@
   <div class="card-body">
     <div class="row">
       <div class="col-9">
-        <h5 class="card-title">{{product.name}}</h5>
+        <h5 class="card-title">{{product?.name}}</h5>
       </div>
       <div class="col-3 text-right">
-        <h5 class="card-title">${{product.price}}</h5>
+        <h5 class="card-title">${{product?.price}}</h5>
       </div>
     </div>
     <div class="row">
       <div class="col-9">
-        <app-ratings [score]="product.rating"></app-ratings>
+        <app-ratings [score]="product?.rating"></app-ratings>
       </div>
       <div class="col-3 text-right">
-        <p>{{comments.length}}</p>
+        <p>{{comments?.length}}</p>
       </div>
     </div>
-    <p class="card-text">{{product.desc}}</p>
+    <p class="card-text">{{product?.desc}}</p>
   </div>
 </div>
 

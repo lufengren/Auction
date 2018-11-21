@@ -1,12 +1,12 @@
 <div class="row my-4">
   <div class="col-12">
-    <form>
+    <!-- <form>
       <div class="form-group">
         <input type="text" [formControl]="searchForm" class="form-control" placeholder="Search Product Here">
       </div>
-    </form>
+    </form> -->
   </div>
-  <div *ngFor="let product of products | searchfilter:keyWord:'name'" class=" col-lg-4">
+  <div *ngFor="let product of products | async" class=" col-lg-4">
     <div class="card my-2">
       <img class="card-img-top" src=".../100px180/" alt="Card image cap">
       <div class="card-body">

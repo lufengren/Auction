@@ -3,6 +3,8 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { SearchComponent } from "./search/search.component";
@@ -40,14 +42,14 @@ const routes: Routes = [
     HomeComponent,
     ProductDetailComponent,
     PageNotFoundComponent,
-    SearchfilterPipe,
-    TestPipe
+    SearchfilterPipe
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
