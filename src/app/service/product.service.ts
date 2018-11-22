@@ -1,12 +1,15 @@
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { Timestamp, Observable } from "rxjs";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 
 @Injectable({
   providedIn: "root"
 })
 export class ProductService {
+
+  searchEvent: EventEmitter<any> = new EventEmitter();
+
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
@@ -21,7 +24,15 @@ export class ProductService {
     return this.http.get<Comment[]>("/api/products/" + id + "/comments");
   }
   getAllCategory(): string[] {
-    return ["Electronic", "Photography"];
+    return ["Electronic", "Camera", "TV", "Toy", "Cellphone"];
+  }
+
+  searchProduct(searchParams): Observable<Product[]> {
+
+    const options = searchParams ?
+      { params: new HttpParams().set("title", searchParams.title).set("price", searchParams.price).set("category", searchParams.category) } : {};
+    //const options = new HttpParams().set("title", searchParams.title).set("price", searchParams.price).set("category", searchParams.category);
+    return this.http.get<Product[]>("/api/products", options);
   }
 }
 
