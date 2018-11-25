@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from "@angular/core";
 
 @Component({
-  selector: "app-ratings",
-  templateUrl: "./ratings.component.html",
-  styleUrls: ["./ratings.component.css"]
+  selector: 'app-ratings',
+  templateUrl: './ratings.component.html',
+  styleUrls: ['./ratings.component.css']
 })
 export class RatingsComponent implements OnInit, OnChanges {
   @Output()
@@ -13,7 +13,7 @@ export class RatingsComponent implements OnInit, OnChanges {
   private score: number;
   private stars: Array<boolean> = [];
   @Input()
-  private readonly: boolean = true;
+  private readonly = true;
   constructor() { }
 
 

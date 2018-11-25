@@ -12,7 +12,7 @@ export class SearchComponent implements OnInit {
   formModel: FormGroup;
   categories: string[];
   constructor(private productService: ProductService) {
-    let fb = new FormBuilder();
+    const fb = new FormBuilder();
     this.formModel = fb.group({
       title: ['', Validators.minLength(3)],
       price: [null, this.priceValidator],
@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
     if (!control.value) {
       return null;
     }
-    let price = parseInt(control.value);
+    const price = parseInt(control.value, 10);
     if (price > 0) {
       return null;
     } else {
@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
 
   onSearch() {
     if (this.formModel.valid) {
-      //console.log(this.formModel.value);
+      // console.log(this.formModel.value);
       this.productService.searchEvent.emit(this.formModel.value);
     }
   }

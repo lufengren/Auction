@@ -9,11 +9,11 @@
 </div> -->
 
 <div class="row">
-  <div *ngFor="let product of products | async" class="col-4">
+  <div *ngFor="let product of products | async" class="col-lg-4 col-12">
     <div class="card my-2">
       <img class="card-img-top" src=".../100px180/" alt="Card image cap">
       <div class="card-body">
-        <h6 class="card-title"><a [routerLink]="['/product',product.id]">{{product.name}}</a></h6>
+        <h6 class="card-title"><a [routerLink]="['/products',product.id]">{{product.name}}</a></h6>
         <h5 class="card-title">$ {{product.price}}</h5>
         <p class="card-text">{{product.desc}}</p>
       </div>

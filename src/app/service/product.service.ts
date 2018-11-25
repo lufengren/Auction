@@ -1,10 +1,10 @@
-import { Injectable, EventEmitter } from "@angular/core";
-import { Timestamp, Observable } from "rxjs";
+import { Injectable, EventEmitter } from '@angular/core';
+import { Timestamp, Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ProductService {
 
@@ -13,26 +13,28 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>("/api/products");
+    return this.http.get<Product[]>('/api/products');
   }
 
   getProduct(id: number): Observable<Product> {
-    return this.http.get<Product>("/api/products/" + id);
+    return this.http.get<Product>('/api/products/' + id);
   }
 
   getComments(id: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>("/api/products/" + id + "/comments");
+    return this.http.get<Comment[]>('/api/products/' + id + '/comments');
   }
   getAllCategory(): string[] {
-    return ["Electronic", "Camera", "TV", "Toy", "Cellphone"];
+    return ['Electronic', 'Camera', 'TV', 'Toy', 'Cellphone'];
   }
 
   searchProduct(searchParams): Observable<Product[]> {
 
     const options = searchParams ?
-      { params: new HttpParams().set("title", searchParams.title).set("price", searchParams.price).set("category", searchParams.category) } : {};
-    //const options = new HttpParams().set("title", searchParams.title).set("price", searchParams.price).set("category", searchParams.category);
-    return this.http.get<Product[]>("/api/products", options);
+      {
+        params: new HttpParams().set('title', searchParams.title).set('price', searchParams.price).set('category', searchParams.category)
+      } : {};
+
+    return this.http.get<Product[]>('/api/products', options);
   }
 }
 
